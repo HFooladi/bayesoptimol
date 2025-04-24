@@ -13,9 +13,9 @@ The choice of molecular representation can significantly impact:
 
 ## Common Molecular Representations
 
-### 1. SMILES Strings
+### 1. Strings
 
-**Simplified Molecular-Input Line-Entry System (SMILES)** is a linear text notation that represents molecular structures.
+Molecules can be represneted as strings. The **Simplified Molecular-Input Line-Entry System (SMILES)** is a linear text notation that is commonly used to represent molecular structures. There are other alternative string-based representations, such as **InChI**,  **InChIKey**, and **Self-Referencing Embedded Strings (SELFIES)**.
 
 Example: Aspirin is represented as `CC(=O)OC1=CC=CC=C1C(=O)O`
 
@@ -36,7 +36,6 @@ Draw.MolToImage(aspirin)
 - Easy to store and share
 
 **Limitations:**
-- Not directly usable by most ML algorithms
 - Multiple valid SMILES can represent the same molecule
 - Doesn't explicitly encode 3D information
 
@@ -293,10 +292,13 @@ In the context of Bayesian optimization and active learning, molecular represent
 
 ## References
 
-1. Cereto-Massagué, A., Ojeda, M. J., Valls, C., Mulero, M., Garcia-Vallvé, S., & Pujadas, G. (2015). Molecular fingerprint similarity search in virtual screening. *Methods*, 71, 58-63.
+1. Mario Krenn, Florian Häse, AkshatKumar Nigam, Pascal Friederich, and Alan Aspuru-Guzik.
+Self-referencing embedded strings (SELFIES): A 100% robust molecular string representation (2020). *Machine Learning: Science and Technology*.
 
-2. Rogers, D., & Hahn, M. (2010). Extended-connectivity fingerprints. *Journal of Chemical Information and Modeling*, 50(5), 742-754.
+2. Cereto-Massagué, A., Ojeda, M. J., Valls, C., Mulero, M., Garcia-Vallvé, S., & Pujadas, G. (2015). Molecular fingerprint similarity search in virtual screening. *Methods*, 71, 58-63.
 
-3. Todeschini, R., & Consonni, V. (2009). *Molecular descriptors for chemoinformatics*. John Wiley & Sons.
+3. Rogers, D., & Hahn, M. (2010). Extended-connectivity fingerprints. *Journal of Chemical Information and Modeling*, 50(5), 742-754.
 
-4. Duvenaud, D. K., Maclaurin, D., Iparraguirre, J., Bombarell, R., Hirzel, T., Aspuru-Guzik, A., & Adams, R. P. (2015). Convolutional networks on graphs for learning molecular fingerprints. *Advances in Neural Information Processing Systems*, 28.
+4. Todeschini, R., & Consonni, V. (2009). *Molecular descriptors for chemoinformatics*. John Wiley & Sons.
+
+5. Duvenaud, D. K., Maclaurin, D., Iparraguirre, J., Bombarell, R., Hirzel, T., Aspuru-Guzik, A., & Adams, R. P. (2015). Convolutional networks on graphs for learning molecular fingerprints. *Advances in Neural Information Processing Systems*, 28.

@@ -4,62 +4,63 @@
 format: jb-book
 root: intro
 parts:
-- caption: Foundations
-  chapters:
-  - file: chapters/foundations/index
-    sections:
-    - file: chapters/foundations/bayesian_optimization_intro
-    - file: chapters/foundations/active_learning_intro 
-    - file: chapters/foundations/molecules_representation
-    - file: chapters/foundations/reactions_representation
+  - caption: Foundations
+    chapters:
+      - file: chapters/foundations/index
+        sections:
+          - file: chapters/foundations/bayesian_optimization_intro
+          - file: chapters/foundations/active_learning_intro
+          - file: chapters/foundations/molecules_representation
 
-- caption: Gaussian Processes
-  chapters:
-  - file: chapters/gaussian_processes/index
-    sections:
-    - file: chapters/gaussian_processes/gaussian_process_basics
-    - file: chapters/gaussian_processes/kernels_for_molecules
-    - file: chapters/gaussian_processes/gp_regression
+  - caption: Gaussian Processes
+    chapters:
+      - file: chapters/gaussian_processes/index
+        sections:
+          - file: chapters/gaussian_processes/gaussian_process_basics
+          - file: chapters/gaussian_processes/kernels_for_molecules
+          - file: chapters/gaussian_processes/gp_regression
 
-- caption: Acquisition Functions
-  chapters:
-  - file: chapters/acquisition_functions/index
-    sections:
-    - file: chapters/acquisition_functions/exploration_exploitation
-    - file: chapters/acquisition_functions/expected_improvement
-    - file: chapters/acquisition_functions/upper_confidence_bound
-    - file: chapters/acquisition_functions/thompson_sampling
+  - caption: Acquisition Functions
+    chapters:
+      - file: chapters/acquisition_functions/index
+        sections:
+          - file: chapters/acquisition_functions/exploration_exploitation
+          - file: chapters/acquisition_functions/expected_improvement
+          - file: chapters/acquisition_functions/upper_confidence_bound
+          - file: chapters/acquisition_functions/thompson_sampling
 
-- caption: Active Learning Strategies
-  chapters:
-  - file: chapters/active_learning_strategies/index
-    sections:
-    - file: chapters/active_learning_strategies/uncertainty_sampling
-    - file: chapters/active_learning_strategies/diversity_sampling
-    - file: chapters/active_learning_strategies/expected_model_change
+  - caption: Active Learning Strategies
+    chapters:
+      - file: chapters/active_learning_strategies/index
+        sections:
+          - file: chapters/active_learning_strategies/uncertainty_sampling
+          - file: chapters/active_learning_strategies/diversity_sampling
+          - file: chapters/active_learning_strategies/expected_model_change
 
-- caption: Case Studies
-  chapters:
-  - file: chapters/case_studies/index
-    sections:
-    - file: chapters/case_studies/solubility_optimization
-    - file: chapters/case_studies/binding_affinity_prediction
-    - file: chapters/case_studies/multi_objective_optimization
+  - caption: Case Studies
+    chapters:
+      - file: chapters/case_studies/index
+        sections:
+          - file: chapters/case_studies/solubility_optimization
+          - file: chapters/case_studies/binding_affinity_prediction
+          - file: chapters/case_studies/multi_objective_optimization
 
-- caption: Implementations
-  chapters:
-  - file: chapters/implementations/index
-    sections:
-    - file: chapters/implementations/scikit_learn_implementation
-    - file: chapters/implementations/gpytorch_implementation
-    - file: chapters/implementations/botorch_implementation
+  - caption: Implementations
+    chapters:
+      - file: chapters/implementations/index
+        sections:
+          - file: chapters/implementations/scikit_learn_implementation
+          - file: chapters/implementations/gpytorch_implementation
+          - file: chapters/implementations/botorch_implementation
 
-- caption: Advanced Topics
-  chapters:
-  - file: chapters/advanced_topics/index
-    sections:
-    - file: chapters/advanced_topics/batch_bayesian_optimization
-    - file: chapters/advanced_topics/multi_fidelity_optimization
-    - file: chapters/advanced_topics/constrained_optimization
+  - caption: Advanced Topics
+    chapters:
+      - file: chapters/advanced_topics/index
+        sections:
+          - file: chapters/advanced_topics/batch_bayesian_optimization
+          - file: chapters/advanced_topics/multi_fidelity_optimization
+          - file: chapters/advanced_topics/constrained_optimization
 
-- file: references
+  - caption: References
+    chapters:
+      - file: references
