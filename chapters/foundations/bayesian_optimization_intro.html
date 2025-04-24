@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to Active Learning in Drug Discovery &#8212; bayesoptimol</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/foundations/bayesian_optimization_intro';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="active_learning_intro.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="bayesoptimol - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="bayesoptimol - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Introduction to Active Learning in Drug Discovery
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Active Learning in Drug Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="molecules_representation.html">Molecular Representations for Machine Learning</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/HFooladi/bayesoptimol" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/HFooladi/bayesoptimol/issues/new?title=Issue%20on%20page%20%2Fchapters/foundations/bayesian_optimization_intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/foundations/bayesian_optimization_intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Active Learning in Drug Discovery</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-active-learning">What is Active Learning?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-active-learning-in-drug-discovery">Why Use Active Learning in Drug Discovery?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-active-learning-cycle-in-drug-discovery">The Active Learning Cycle in Drug Discovery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-strategies-in-active-learning">Query Strategies in Active Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-sampling">Uncertainty Sampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diversity-based-sampling">Diversity-Based Sampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-model-change">Expected Model Change</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-improvement-and-exploitation">Expected Improvement and Exploitation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-in-drug-discovery">Applications in Drug Discovery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-active-learning-for-kinase-inhibitor-discovery">Case Study: Active Learning for Kinase Inhibitor Discovery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-and-limitations">Challenges and Limitations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-active-learning-in-drug-discovery">
+<h1>Introduction to Active Learning in Drug Discovery<a class="headerlink" href="#introduction-to-active-learning-in-drug-discovery" title="Link to this heading">#</a></h1>
+<p>Active learning is a powerful machine learning paradigm that can dramatically accelerate drug discovery by intelligently selecting which molecules to synthesize and test. In this chapter, we’ll explore how active learning works and why it’s particularly valuable in pharmaceutical research.</p>
+<section id="what-is-active-learning">
+<h2>What is Active Learning?<a class="headerlink" href="#what-is-active-learning" title="Link to this heading">#</a></h2>
+<p>Active learning is a semi-supervised machine learning approach where the algorithm actively queries an oracle (typically a human expert or, in our case, experimental assays) to label data points that are most informative for model improvement. The key idea is to minimize the number of labeled examples needed to achieve good predictive performance.</p>
+<figure class="align-default" id="active-learning-cycle">
+<a class="reference internal image-reference" href="chapters/images/active_learning_cycle.png"><img alt="chapters/images/active_learning_cycle.png" src="chapters/images/active_learning_cycle.png" style="height: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">The active learning cycle in drug discovery</span><a class="headerlink" href="#active-learning-cycle" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="why-use-active-learning-in-drug-discovery">
+<h2>Why Use Active Learning in Drug Discovery?<a class="headerlink" href="#why-use-active-learning-in-drug-discovery" title="Link to this heading">#</a></h2>
+<p>Drug discovery faces several challenges that make active learning particularly valuable:</p>
+<ol class="arabic simple">
+<li><p><strong>Experimental Cost</strong>: Synthesizing and testing compounds is expensive and time-consuming</p></li>
+<li><p><strong>Vast Chemical Space</strong>: The space of possible drug-like molecules is estimated to be 10^33 or larger</p></li>
+<li><p><strong>Sparse Data</strong>: Only a tiny fraction of chemical space has been experimentally tested</p></li>
+<li><p><strong>Complex Structure-Activity Relationships</strong>: The relationship between molecular structure and biological activity is often non-linear and complex</p></li>
+</ol>
+<p>Active learning addresses these challenges by prioritizing which molecules should be synthesized and tested next, making the most efficient use of limited experimental resources.</p>
+</section>
+<section id="the-active-learning-cycle-in-drug-discovery">
+<h2>The Active Learning Cycle in Drug Discovery<a class="headerlink" href="#the-active-learning-cycle-in-drug-discovery" title="Link to this heading">#</a></h2>
+<p>The typical active learning cycle in drug discovery includes:</p>
+<ol class="arabic simple">
+<li><p><strong>Start with an initial dataset</strong>: Begin with a small set of molecules with known properties</p></li>
+<li><p><strong>Build a predictive model</strong>: Train a machine learning model on the available data</p></li>
+<li><p><strong>Query selection</strong>: Use the model to select the most informative new molecules to test</p></li>
+<li><p><strong>Experimental testing</strong>: Synthesize and test the selected molecules</p></li>
+<li><p><strong>Update the model</strong>: Incorporate the new experimental data</p></li>
+<li><p><strong>Repeat</strong>: Continue the cycle until a satisfactory compound is found or resources are exhausted</p></li>
+</ol>
+</section>
+<section id="query-strategies-in-active-learning">
+<h2>Query Strategies in Active Learning<a class="headerlink" href="#query-strategies-in-active-learning" title="Link to this heading">#</a></h2>
+<p>Several strategies exist for selecting which molecules to test next:</p>
+<section id="uncertainty-sampling">
+<h3>Uncertainty Sampling<a class="headerlink" href="#uncertainty-sampling" title="Link to this heading">#</a></h3>
+<p>Select molecules where the model is most uncertain in its predictions. Common approaches include:</p>
+<ul class="simple">
+<li><p><strong>Least confidence</strong>: Choose the molecule with the lowest prediction confidence</p></li>
+<li><p><strong>Margin sampling</strong>: Select molecules with the smallest difference between the top two most probable predictions</p></li>
+<li><p><strong>Entropy-based</strong>: Choose molecules with the highest entropy in their prediction distribution</p></li>
+</ul>
+</section>
+<section id="diversity-based-sampling">
+<h3>Diversity-Based Sampling<a class="headerlink" href="#diversity-based-sampling" title="Link to this heading">#</a></h3>
+<p>Select molecules that are most different from previously tested compounds to explore chemical space more effectively:</p>
+<ul class="simple">
+<li><p><strong>Clustering</strong>: Select representatives from different clusters in chemical space</p></li>
+<li><p><strong>Maximum diversity</strong>: Choose molecules that maximize diversity metrics in the selected batch</p></li>
+</ul>
+</section>
+<section id="expected-model-change">
+<h3>Expected Model Change<a class="headerlink" href="#expected-model-change" title="Link to this heading">#</a></h3>
+<p>Select molecules that, if labeled, would cause the greatest change to the current model:</p>
+<ul class="simple">
+<li><p><strong>Expected gradient length</strong>: Choose molecules that would cause the largest gradient update</p></li>
+<li><p><strong>Query-by-committee</strong>: Select molecules where an ensemble of models disagrees the most</p></li>
+</ul>
+</section>
+<section id="expected-improvement-and-exploitation">
+<h3>Expected Improvement and Exploitation<a class="headerlink" href="#expected-improvement-and-exploitation" title="Link to this heading">#</a></h3>
+<p>These strategies focus on finding better compounds rather than just improving the model:</p>
+<ul class="simple">
+<li><p><strong>Expected improvement</strong>: Select molecules with the highest probability of improving upon the best compound found so far</p></li>
+<li><p><strong>Upper confidence bound</strong>: Balance exploration of uncertain regions with exploitation of promising areas</p></li>
+</ul>
+</section>
+</section>
+<section id="applications-in-drug-discovery">
+<h2>Applications in Drug Discovery<a class="headerlink" href="#applications-in-drug-discovery" title="Link to this heading">#</a></h2>
+<p>Active learning has been successfully applied to various aspects of drug discovery:</p>
+<ul class="simple">
+<li><p><strong>Virtual screening</strong>: Efficiently identifying active compounds from large libraries</p></li>
+<li><p><strong>QSAR modeling</strong>: Building accurate structure-activity relationships with minimal data</p></li>
+<li><p><strong>ADMET property optimization</strong>: Finding compounds with optimal absorption, distribution, metabolism, excretion, and toxicity profiles</p></li>
+<li><p><strong>Hit-to-lead optimization</strong>: Efficiently navigating the trade-offs between multiple property objectives</p></li>
+</ul>
+</section>
+<section id="case-study-active-learning-for-kinase-inhibitor-discovery">
+<h2>Case Study: Active Learning for Kinase Inhibitor Discovery<a class="headerlink" href="#case-study-active-learning-for-kinase-inhibitor-discovery" title="Link to this heading">#</a></h2>
+<p>Reker et al. (2015) demonstrated how active learning can accelerate the discovery of novel kinase inhibitors. Starting with a small set of known inhibitors, they:</p>
+<ol class="arabic simple">
+<li><p>Built an initial machine learning model</p></li>
+<li><p>Used uncertainty sampling to select new compounds for testing</p></li>
+<li><p>Updated their model with new experimental data</p></li>
+<li><p>Repeated the cycle several times</p></li>
+</ol>
+<p>The result was the discovery of novel chemical scaffolds with potent kinase inhibitory activity using only a fraction of the compounds that would have been required with traditional high-throughput screening.</p>
+</section>
+<section id="challenges-and-limitations">
+<h2>Challenges and Limitations<a class="headerlink" href="#challenges-and-limitations" title="Link to this heading">#</a></h2>
+<p>Despite its advantages, active learning in drug discovery faces several challenges:</p>
+<ul class="simple">
+<li><p><strong>Experimental latency</strong>: There’s often a significant time delay between molecule selection and obtaining experimental results</p></li>
+<li><p><strong>Model bias</strong>: The initial model might bias exploration toward certain regions of chemical space</p></li>
+<li><p><strong>Synthetic accessibility</strong>: Selected compounds may be difficult or impossible to synthesize</p></li>
+<li><p><strong>Multi-objective optimization</strong>: Drug discovery often requires optimizing multiple properties simultaneously</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Active learning represents a paradigm shift in how we approach drug discovery, moving from exhaustive screening to intelligent, targeted experimentation. By focusing limited resources on the most informative experiments, active learning has the potential to significantly accelerate the discovery of novel therapeutics while reducing costs.</p>
+<p>In the following chapters, we’ll explore specific active learning strategies in detail and provide practical implementations using Python and modern machine learning frameworks.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<p><span id="id1">[]</span></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/foundations"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="active_learning_intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-active-learning">What is Active Learning?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-active-learning-in-drug-discovery">Why Use Active Learning in Drug Discovery?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-active-learning-cycle-in-drug-discovery">The Active Learning Cycle in Drug Discovery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-strategies-in-active-learning">Query Strategies in Active Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-sampling">Uncertainty Sampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diversity-based-sampling">Diversity-Based Sampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-model-change">Expected Model Change</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-improvement-and-exploitation">Expected Improvement and Exploitation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-in-drug-discovery">Applications in Drug Discovery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-active-learning-for-kinase-inhibitor-discovery">Case Study: Active Learning for Kinase Inhibitor Discovery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-and-limitations">Challenges and Limitations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hosein Fooladi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

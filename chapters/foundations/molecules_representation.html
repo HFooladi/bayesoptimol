@@ -1,0 +1,877 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Molecular Representations for Machine Learning &#8212; bayesoptimol</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/foundations/molecules_representation';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../gaussian_processes/index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="active_learning_intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="bayesoptimol - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="bayesoptimol - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Introduction to Active Learning in Drug Discovery
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bayesian_optimization_intro.html">Introduction to Active Learning in Drug Discovery</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Molecular Representations for Machine Learning</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/HFooladi/bayesoptimol" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/HFooladi/bayesoptimol/issues/new?title=Issue%20on%20page%20%2Fchapters/foundations/molecules_representation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/foundations/molecules_representation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Molecular Representations for Machine Learning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-molecular-representations-matter">Why Molecular Representations Matter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-molecular-representations">Common Molecular Representations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smiles-strings">1. SMILES Strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#molecular-fingerprints">2. Molecular Fingerprints</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-morgan-circular-fingerprints-ecfp">a. Morgan/Circular Fingerprints (ECFP)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-maccs-keys">b. MACCS Keys</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-atom-pair-fingerprints">c. Atom Pair Fingerprints</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#molecular-descriptors">3. Molecular Descriptors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-based-representations">4. Graph-Based Representations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-representations">5. 3D Representations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-conformers">a. Conformers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-pharmacophore-features">b. Pharmacophore Features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-3d-grid-representations">c. 3D Grid Representations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-representation">Choosing the Right Representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-functions-for-molecular-similarity">Kernel Functions for Molecular Similarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tanimoto-kernel">Tanimoto Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-kernel-with-molecular-descriptors">Gaussian Kernel with Molecular Descriptors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-kernels">Graph Kernels</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-for-molecular-data">Feature Engineering for Molecular Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-example-molecular-similarity-search">Implementation Example: Molecular Similarity Search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="molecular-representations-for-machine-learning">
+<h1>Molecular Representations for Machine Learning<a class="headerlink" href="#molecular-representations-for-machine-learning" title="Link to this heading">#</a></h1>
+<p>Representing molecules in a format suitable for machine learning algorithms is a critical step in computational drug discovery. In this chapter, we’ll explore different ways to encode molecular structures into numerical or vector representations that can be used in Bayesian optimization and active learning approaches.</p>
+<section id="why-molecular-representations-matter">
+<h2>Why Molecular Representations Matter<a class="headerlink" href="#why-molecular-representations-matter" title="Link to this heading">#</a></h2>
+<p>The choice of molecular representation can significantly impact:</p>
+<ul class="simple">
+<li><p>The performance of machine learning models</p></li>
+<li><p>The ability to capture relevant chemical information</p></li>
+<li><p>The computational efficiency of the optimization process</p></li>
+<li><p>The interpretability of the results</p></li>
+</ul>
+</section>
+<section id="common-molecular-representations">
+<h2>Common Molecular Representations<a class="headerlink" href="#common-molecular-representations" title="Link to this heading">#</a></h2>
+<section id="smiles-strings">
+<h3>1. SMILES Strings<a class="headerlink" href="#smiles-strings" title="Link to this heading">#</a></h3>
+<p><strong>Simplified Molecular-Input Line-Entry System (SMILES)</strong> is a linear text notation that represents molecular structures.</p>
+<p>Example: Aspirin is represented as <code class="docutils literal notranslate"><span class="pre">CC(=O)OC1=CC=CC=C1C(=O)O</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rdkit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rdkit.Chem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Draw</span>
+
+<span class="c1"># Create an RDKit molecule from SMILES</span>
+<span class="n">aspirin</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">MolFromSmiles</span><span class="p">(</span><span class="s1">&#39;CC(=O)OC1=CC=CC=C1C(=O)O&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the molecule</span>
+<span class="n">Draw</span><span class="o">.</span><span class="n">MolToImage</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Compact and human-readable</p></li>
+<li><p>Widely used in chemical databases</p></li>
+<li><p>Easy to store and share</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p>Not directly usable by most ML algorithms</p></li>
+<li><p>Multiple valid SMILES can represent the same molecule</p></li>
+<li><p>Doesn’t explicitly encode 3D information</p></li>
+</ul>
+</section>
+<section id="molecular-fingerprints">
+<h3>2. Molecular Fingerprints<a class="headerlink" href="#molecular-fingerprints" title="Link to this heading">#</a></h3>
+<p>Fingerprints are bit vectors or count vectors that encode the presence or frequency of specific structural features in a molecule.</p>
+<section id="a-morgan-circular-fingerprints-ecfp">
+<h4>a. Morgan/Circular Fingerprints (ECFP)<a class="headerlink" href="#a-morgan-circular-fingerprints-ecfp" title="Link to this heading">#</a></h4>
+<p>Based on the Morgan algorithm, these fingerprints encode circular environments around each atom.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rdkit.Chem</span><span class="w"> </span><span class="kn">import</span> <span class="n">AllChem</span>
+
+<span class="c1"># Generate Morgan fingerprint (radius 2, 1024 bits)</span>
+<span class="n">morgan_fp</span> <span class="o">=</span> <span class="n">AllChem</span><span class="o">.</span><span class="n">GetMorganFingerprintAsBitVect</span><span class="p">(</span><span class="n">aspirin</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nBits</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="b-maccs-keys">
+<h4>b. MACCS Keys<a class="headerlink" href="#b-maccs-keys" title="Link to this heading">#</a></h4>
+<p>A set of 166 predefined structural keys.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rdkit.Chem</span><span class="w"> </span><span class="kn">import</span> <span class="n">MACCSkeys</span>
+
+<span class="c1"># Generate MACCS fingerprint</span>
+<span class="n">maccs_fp</span> <span class="o">=</span> <span class="n">MACCSkeys</span><span class="o">.</span><span class="n">GenMACCSKeys</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="c-atom-pair-fingerprints">
+<h4>c. Atom Pair Fingerprints<a class="headerlink" href="#c-atom-pair-fingerprints" title="Link to this heading">#</a></h4>
+<p>Encode pairs of atoms and the shortest path between them.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rdkit.Chem.AtomPairs</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pairs</span>
+
+<span class="c1"># Generate atom pair fingerprint</span>
+<span class="n">ap_fp</span> <span class="o">=</span> <span class="n">Pairs</span><span class="o">.</span><span class="n">GetAtomPairFingerprint</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Fixed length, suitable for many ML algorithms</p></li>
+<li><p>Capture important chemical substructures</p></li>
+<li><p>Computationally efficient</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p>Loss of structural information</p></li>
+<li><p>May not capture complex 3D relationships</p></li>
+<li><p>Different fingerprints capture different aspects of chemistry</p></li>
+</ul>
+</section>
+</section>
+<section id="molecular-descriptors">
+<h3>3. Molecular Descriptors<a class="headerlink" href="#molecular-descriptors" title="Link to this heading">#</a></h3>
+<p>Numerical values that describe various physical, chemical, or topological properties of molecules.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rdkit.Chem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Descriptors</span>
+
+<span class="c1"># Calculate some common descriptors</span>
+<span class="n">mw</span> <span class="o">=</span> <span class="n">Descriptors</span><span class="o">.</span><span class="n">MolWt</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+<span class="n">logp</span> <span class="o">=</span> <span class="n">Descriptors</span><span class="o">.</span><span class="n">MolLogP</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+<span class="n">tpsa</span> <span class="o">=</span> <span class="n">Descriptors</span><span class="o">.</span><span class="n">TPSA</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+<span class="n">hba</span> <span class="o">=</span> <span class="n">Descriptors</span><span class="o">.</span><span class="n">NumHAcceptors</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+<span class="n">hbd</span> <span class="o">=</span> <span class="n">Descriptors</span><span class="o">.</span><span class="n">NumHDonors</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Molecular Weight: </span><span class="si">{</span><span class="n">mw</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LogP: </span><span class="si">{</span><span class="n">logp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TPSA: </span><span class="si">{</span><span class="n">tpsa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;H-Bond Acceptors: </span><span class="si">{</span><span class="n">hba</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;H-Bond Donors: </span><span class="si">{</span><span class="n">hbd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Interpretable physicochemical properties</p></li>
+<li><p>Directly related to drug-like properties</p></li>
+<li><p>Can incorporate expert knowledge</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p>May require feature selection</p></li>
+<li><p>Different descriptors may be correlated</p></li>
+<li><p>May not capture all relevant structural information</p></li>
+</ul>
+</section>
+<section id="graph-based-representations">
+<h3>4. Graph-Based Representations<a class="headerlink" href="#graph-based-representations" title="Link to this heading">#</a></h3>
+<p>Molecules are naturally represented as graphs, with atoms as nodes and bonds as edges.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+
+<span class="c1"># Convert RDKit molecule to NetworkX graph</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mol_to_nx</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">GetAtoms</span><span class="p">():</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">GetIdx</span><span class="p">(),</span>
+                  <span class="n">atomic_num</span><span class="o">=</span><span class="n">atom</span><span class="o">.</span><span class="n">GetAtomicNum</span><span class="p">(),</span>
+                  <span class="n">formal_charge</span><span class="o">=</span><span class="n">atom</span><span class="o">.</span><span class="n">GetFormalCharge</span><span class="p">(),</span>
+                  <span class="n">chiral_tag</span><span class="o">=</span><span class="n">atom</span><span class="o">.</span><span class="n">GetChiralTag</span><span class="p">(),</span>
+                  <span class="n">hybridization</span><span class="o">=</span><span class="n">atom</span><span class="o">.</span><span class="n">GetHybridization</span><span class="p">(),</span>
+                  <span class="n">is_aromatic</span><span class="o">=</span><span class="n">atom</span><span class="o">.</span><span class="n">GetIsAromatic</span><span class="p">())</span>
+    
+    <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">GetBonds</span><span class="p">():</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">GetBeginAtomIdx</span><span class="p">(),</span>
+                  <span class="n">bond</span><span class="o">.</span><span class="n">GetEndAtomIdx</span><span class="p">(),</span>
+                  <span class="n">bond_type</span><span class="o">=</span><span class="n">bond</span><span class="o">.</span><span class="n">GetBondType</span><span class="p">())</span>
+    
+    <span class="k">return</span> <span class="n">G</span>
+
+<span class="c1"># Create a graph representation of aspirin</span>
+<span class="n">aspirin_graph</span> <span class="o">=</span> <span class="n">mol_to_nx</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Preserves molecular topology</p></li>
+<li><p>No information loss from the 2D structure</p></li>
+<li><p>Suitable for graph neural networks</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p>More complex to process</p></li>
+<li><p>Variable size, requiring special handling</p></li>
+<li><p>May not explicitly encode 3D information</p></li>
+</ul>
+</section>
+<section id="d-representations">
+<h3>5. 3D Representations<a class="headerlink" href="#d-representations" title="Link to this heading">#</a></h3>
+<p>Capture the three-dimensional structure of molecules, which is often crucial for biological activity.</p>
+<section id="a-conformers">
+<h4>a. Conformers<a class="headerlink" href="#a-conformers" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a 3D conformer</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">AddHs</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+<span class="n">AllChem</span><span class="o">.</span><span class="n">EmbedMolecule</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">AllChem</span><span class="o">.</span><span class="n">MMFFOptimizeMolecule</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>  <span class="c1"># Energy minimization</span>
+</pre></div>
+</div>
+</section>
+<section id="b-pharmacophore-features">
+<h4>b. Pharmacophore Features<a class="headerlink" href="#b-pharmacophore-features" title="Link to this heading">#</a></h4>
+<p>Represent the spatial arrangement of key interaction features (H-bond donors/acceptors, charged groups, etc.).</p>
+</section>
+<section id="c-3d-grid-representations">
+<h4>c. 3D Grid Representations<a class="headerlink" href="#c-3d-grid-representations" title="Link to this heading">#</a></h4>
+<p>Place the molecule in a 3D grid and encode properties at each grid point.</p>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Capture spatial relationships critical for binding</p></li>
+<li><p>More accurate representation of molecular shape</p></li>
+<li><p>Better for modeling protein-ligand interactions</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p>Computationally expensive</p></li>
+<li><p>Molecules may have multiple conformations</p></li>
+<li><p>Requires 3D structure generation or experimental data</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="choosing-the-right-representation">
+<h2>Choosing the Right Representation<a class="headerlink" href="#choosing-the-right-representation" title="Link to this heading">#</a></h2>
+<p>The optimal molecular representation depends on:</p>
+<ol class="arabic simple">
+<li><p><strong>The task at hand</strong>: Different tasks may require different representations</p></li>
+<li><p><strong>Available data</strong>: Size and quality of your dataset</p></li>
+<li><p><strong>Computational resources</strong>: Some representations are more computationally intensive</p></li>
+<li><p><strong>Model type</strong>: Different models work better with different representations</p></li>
+<li><p><strong>Interpretability needs</strong>: Some representations are more interpretable than others</p></li>
+</ol>
+</section>
+<section id="kernel-functions-for-molecular-similarity">
+<h2>Kernel Functions for Molecular Similarity<a class="headerlink" href="#kernel-functions-for-molecular-similarity" title="Link to this heading">#</a></h2>
+<p>In Bayesian optimization and active learning, kernel functions that measure similarity between molecules are often used. Common kernels include:</p>
+<section id="tanimoto-kernel">
+<h3>Tanimoto Kernel<a class="headerlink" href="#tanimoto-kernel" title="Link to this heading">#</a></h3>
+<p>Based on the Tanimoto coefficient, widely used for fingerprint similarity:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tanimoto_kernel</span><span class="p">(</span><span class="n">fp1</span><span class="p">,</span> <span class="n">fp2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tanimoto kernel for bit vectors&quot;&quot;&quot;</span>
+    <span class="n">intersection</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">fp1</span><span class="p">,</span> <span class="n">fp2</span><span class="p">))</span>
+    <span class="n">union</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">fp1</span><span class="p">,</span> <span class="n">fp2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">intersection</span> <span class="o">/</span> <span class="n">union</span> <span class="k">if</span> <span class="n">union</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+</section>
+<section id="gaussian-kernel-with-molecular-descriptors">
+<h3>Gaussian Kernel with Molecular Descriptors<a class="headerlink" href="#gaussian-kernel-with-molecular-descriptors" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gaussian_kernel</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gaussian kernel for descriptor vectors&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="graph-kernels">
+<h3>Graph Kernels<a class="headerlink" href="#graph-kernels" title="Link to this heading">#</a></h3>
+<p>For comparing molecular graphs directly:</p>
+<ul class="simple">
+<li><p>Shortest-path kernels</p></li>
+<li><p>Random walk kernels</p></li>
+<li><p>Weisfeiler-Lehman subtree kernels</p></li>
+</ul>
+</section>
+</section>
+<section id="feature-engineering-for-molecular-data">
+<h2>Feature Engineering for Molecular Data<a class="headerlink" href="#feature-engineering-for-molecular-data" title="Link to this heading">#</a></h2>
+<p>Some useful approaches for feature engineering:</p>
+<ol class="arabic simple">
+<li><p><strong>Dimensionality reduction</strong>: PCA, t-SNE, or UMAP to reduce high-dimensional fingerprints</p></li>
+<li><p><strong>Feature selection</strong>: Choose the most relevant descriptors using statistical methods</p></li>
+<li><p><strong>Normalization</strong>: Scale features to have similar ranges</p></li>
+<li><p><strong>Combining representations</strong>: Hybrid approaches that combine different representation types</p></li>
+</ol>
+</section>
+<section id="implementation-example-molecular-similarity-search">
+<h2>Implementation Example: Molecular Similarity Search<a class="headerlink" href="#implementation-example-molecular-similarity-search" title="Link to this heading">#</a></h2>
+<p>Here’s a simple example of how to use molecular representations to find similar compounds:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rdkit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rdkit.Chem</span><span class="w"> </span><span class="kn">import</span> <span class="n">AllChem</span><span class="p">,</span> <span class="n">DataStructs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Define a set of molecules</span>
+<span class="n">smiles_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;CC(=O)OC1=CC=CC=C1C(=O)O&#39;</span><span class="p">,</span>         <span class="c1"># Aspirin</span>
+    <span class="s1">&#39;CC(C)CC1=CC=C(C=C1)C(C)C(=O)O&#39;</span><span class="p">,</span>     <span class="c1"># Ibuprofen</span>
+    <span class="s1">&#39;CC(=O)NC1=CC=C(C=C1)O&#39;</span><span class="p">,</span>             <span class="c1"># Acetaminophen</span>
+    <span class="s1">&#39;OC1=C(C=CC=C1)C(=O)O&#39;</span><span class="p">,</span>              <span class="c1"># Salicylic acid</span>
+    <span class="s1">&#39;C1=CC=C2C(=C1)C(=O)OCC2&#39;</span><span class="p">,</span>           <span class="c1"># Coumarin</span>
+<span class="p">]</span>
+
+<span class="c1"># Convert to RDKit molecules</span>
+<span class="n">mols</span> <span class="o">=</span> <span class="p">[</span><span class="n">Chem</span><span class="o">.</span><span class="n">MolFromSmiles</span><span class="p">(</span><span class="n">smiles</span><span class="p">)</span> <span class="k">for</span> <span class="n">smiles</span> <span class="ow">in</span> <span class="n">smiles_list</span><span class="p">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Aspirin&#39;</span><span class="p">,</span> <span class="s1">&#39;Ibuprofen&#39;</span><span class="p">,</span> <span class="s1">&#39;Acetaminophen&#39;</span><span class="p">,</span> <span class="s1">&#39;Salicylic acid&#39;</span><span class="p">,</span> <span class="s1">&#39;Coumarin&#39;</span><span class="p">]</span>
+
+<span class="c1"># Generate Morgan fingerprints</span>
+<span class="n">fps</span> <span class="o">=</span> <span class="p">[</span><span class="n">AllChem</span><span class="o">.</span><span class="n">GetMorganFingerprintAsBitVect</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nBits</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">mols</span><span class="p">]</span>
+
+<span class="c1"># Calculate similarity matrix</span>
+<span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">fps</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">fps</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fps</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fps</span><span class="p">)):</span>
+        <span class="n">similarity_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">DataStructs</span><span class="o">.</span><span class="n">TanimotoSimilarity</span><span class="p">(</span><span class="n">fps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fps</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+<span class="c1"># Print similarity matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Molecular Similarity Matrix (Tanimoto):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;                &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">15</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">15</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">similarity_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">        &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>The choice of molecular representation is a critical factor in the success of machine learning approaches in drug discovery. Understanding the strengths and limitations of different representations helps in selecting the most appropriate one for your specific task.</p>
+<p>In the context of Bayesian optimization and active learning, molecular representations form the foundation upon which acquisition functions and selection strategies operate. A well-chosen representation can significantly enhance the efficiency of the optimization process and lead to more rapid discovery of promising drug candidates.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Cereto-Massagué, A., Ojeda, M. J., Valls, C., Mulero, M., Garcia-Vallvé, S., &amp; Pujadas, G. (2015). Molecular fingerprint similarity search in virtual screening. <em>Methods</em>, 71, 58-63.</p></li>
+<li><p>Rogers, D., &amp; Hahn, M. (2010). Extended-connectivity fingerprints. <em>Journal of Chemical Information and Modeling</em>, 50(5), 742-754.</p></li>
+<li><p>Todeschini, R., &amp; Consonni, V. (2009). <em>Molecular descriptors for chemoinformatics</em>. John Wiley &amp; Sons.</p></li>
+<li><p>Duvenaud, D. K., Maclaurin, D., Iparraguirre, J., Bombarell, R., Hirzel, T., Aspuru-Guzik, A., &amp; Adams, R. P. (2015). Convolutional networks on graphs for learning molecular fingerprints. <em>Advances in Neural Information Processing Systems</em>, 28.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/foundations"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="active_learning_intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../gaussian_processes/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-molecular-representations-matter">Why Molecular Representations Matter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-molecular-representations">Common Molecular Representations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smiles-strings">1. SMILES Strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#molecular-fingerprints">2. Molecular Fingerprints</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-morgan-circular-fingerprints-ecfp">a. Morgan/Circular Fingerprints (ECFP)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-maccs-keys">b. MACCS Keys</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-atom-pair-fingerprints">c. Atom Pair Fingerprints</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#molecular-descriptors">3. Molecular Descriptors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-based-representations">4. Graph-Based Representations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-representations">5. 3D Representations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-conformers">a. Conformers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-pharmacophore-features">b. Pharmacophore Features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-3d-grid-representations">c. 3D Grid Representations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-representation">Choosing the Right Representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-functions-for-molecular-similarity">Kernel Functions for Molecular Similarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tanimoto-kernel">Tanimoto Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-kernel-with-molecular-descriptors">Gaussian Kernel with Molecular Descriptors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-kernels">Graph Kernels</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-for-molecular-data">Feature Engineering for Molecular Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-example-molecular-similarity-search">Implementation Example: Molecular Similarity Search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hosein Fooladi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

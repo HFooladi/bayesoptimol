@@ -1,0 +1,1582 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>-- coding: utf-8 -- &#8212; bayesoptimol</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/foundations/intro';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="bayesoptimol - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="bayesoptimol - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Introduction to Active Learning in Drug Discovery
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/foundations/bayesian_optimization_intro.html">Introduction to Active Learning in Drug Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/foundations/molecules_representation.html">Molecular Representations for Machine Learning</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/HFooladi/bayesoptimol" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/HFooladi/bayesoptimol/issues/new?title=Issue%20on%20page%20%2Fnotebooks/foundations/intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/foundations/intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>-- coding: utf-8 --</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">-<em>- coding: utf-8 -</em>-</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-title-section-title"># [Chapter Title]: [Section Title]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#author-hosein-fooladi"><strong>Author</strong>: Hosein Fooladi</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#license-mit-license"><strong>License</strong>: MIT License</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">## Overview</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#this-notebook-demonstrates-brief-description-of-what-the-notebook-covers">This notebook demonstrates [brief description of what the notebook covers].</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives"><strong>Learning Objectives:</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-objective">- First objective</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#second-objective">- Second objective</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#third-objective">- Third objective</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-and-theory">## 1. Introduction and Theory</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-theoretical-background-about-the-topic-of-this-notebook">[Brief theoretical background about the topic of this notebook]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#you-can-include-equations-using-latex-format">[You can include equations using LaTeX format]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#f-x-mu-x-mathcal-k-x-x-mathcal-k-x-x-sigma-2-mathbf-i-1-y-mu-x">$<span class="math notranslate nohighlight">\(f(x) = \mu(x) + \mathcal{K}(x, X)[\mathcal{K}(X, X) + \sigma^2\mathbf{I}]^{-1}(y - \mu(X))\)</span>$</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">## 2. Data Preparation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions-for-preparing-data-loading-datasets-etc">[Instructions for preparing data, loading datasets, etc.]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">## 3. Feature Engineering</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id10"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-how-molecules-are-represented-for-machine-learning">[Description of how molecules are represented for machine learning]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">## 4. Model Implementation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id11"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-model-implementation">[Description of the model implementation]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-implementation">## 5. Optimization Implementation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id12"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-optimization-approach">[Description of the optimization approach]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-and-results">## 6. Experiment and Results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id13"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-experiment-and-visualization-of-results">[Description of the experiment and visualization of results]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-exploration-optional">## 7. Interactive Exploration (Optional)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id14"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-interactive-elements-for-users-to-explore">[Description of interactive elements for users to explore]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#title-interactive-parameter-exploration-display-mode-form">@title Interactive Parameter Exploration { display-mode: “form” }</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#add-interactive-elements-here-if-desired">Add interactive elements here if desired</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#for-example-widgets-to-adjust-model-parameters">For example, widgets to adjust model parameters</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-for-readers">## 8. Exercises for Readers</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id15"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#here-are-some-exercises-to-deepen-your-understanding">Here are some exercises to deepen your understanding:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id16"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#try-different-molecular-representations-and-compare-their-performance">1. Try different molecular representations and compare their performance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-an-alternative-acquisition-function-and-compare-results">2. Implement an alternative acquisition function and compare results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-this-approach-to-a-different-molecular-dataset">3. Apply this approach to a different molecular dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extend-the-model-to-handle-multi-objective-optimization">4. Extend the model to handle multi-objective optimization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-key-takeaways">## 9. Summary and Key Takeaways</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id17"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points"><strong>Key Points:</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id18"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-key-takeaway">- First key takeaway</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#second-key-takeaway">- Second key takeaway</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#third-key-takeaway">- Third key takeaway</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id19"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps"><strong>Next Steps:</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id20"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#suggestion-for-further-exploration">- Suggestion for further exploration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics-in-other-chapters">- Related topics in other chapters</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">## 10. References</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id21"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-1">1. Reference 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-2">2. Reference 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-3">3. Reference 3</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="coding-utf-8">
+<h1>-<em>- coding: utf-8 -</em>-<a class="headerlink" href="#coding-utf-8" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="chapter-title-section-title">
+<h1># [Chapter Title]: [Section Title]<a class="headerlink" href="#chapter-title-section-title" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="author-hosein-fooladi">
+<h1><strong>Author</strong>: Hosein Fooladi<a class="headerlink" href="#author-hosein-fooladi" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="license-mit-license">
+<h1><strong>License</strong>: MIT License<a class="headerlink" href="#license-mit-license" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1><a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id3">
+<h1><a class="reference external" href="https://colab.research.google.com/github/HFooladi/bayesoptimol/blob/main/%5Bpath_to_notebook%5D"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a><a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="overview">
+<h1>## Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id4">
+<h1><a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="this-notebook-demonstrates-brief-description-of-what-the-notebook-covers">
+<h1>This notebook demonstrates [brief description of what the notebook covers].<a class="headerlink" href="#this-notebook-demonstrates-brief-description-of-what-the-notebook-covers" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id5">
+<h1><a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="learning-objectives">
+<h1><strong>Learning Objectives:</strong><a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="first-objective">
+<h1>- First objective<a class="headerlink" href="#first-objective" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="second-objective">
+<h1>- Second objective<a class="headerlink" href="#second-objective" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="third-objective">
+<h1>- Third objective<a class="headerlink" href="#third-objective" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ## Setup and Dependencies</span>
+<span class="c1"># </span>
+<span class="c1"># First, let&#39;s install and import the necessary packages.</span>
+
+<span class="c1"># Install required packages</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>rdkit-pypi<span class="w"> </span>scikit-learn<span class="w"> </span>pandas<span class="w"> </span>matplotlib<span class="w"> </span>seaborn<span class="w"> </span>gpytorch<span class="w"> </span>botorch
+
+<span class="c1"># Import libraries</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rdkit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rdkit.Chem</span><span class="w"> </span><span class="kn">import</span> <span class="n">AllChem</span><span class="p">,</span> <span class="n">Descriptors</span><span class="p">,</span> <span class="n">Draw</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gpytorch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">botorch</span>
+
+<span class="c1"># Set random seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: rdkit-pypi in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (2022.9.5)
+Requirement already satisfied: scikit-learn in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (1.2.2)
+Requirement already satisfied: pandas in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (2.1.4)
+Requirement already satisfied: matplotlib in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (3.8.0)
+Requirement already satisfied: seaborn in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (0.13.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting gpytorch
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading gpytorch-1.14-py3-none-any.whl.metadata (8.0 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting botorch
+  Downloading botorch-0.13.0-py3-none-any.whl.metadata (10 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from rdkit-pypi) (1.26.0)
+Requirement already satisfied: Pillow in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from rdkit-pypi) (9.3.0)
+Requirement already satisfied: scipy&gt;=1.3.2 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from scikit-learn) (1.10.0)
+Requirement already satisfied: joblib&gt;=1.1.1 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from scikit-learn) (1.1.1)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from scikit-learn) (3.1.0)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/scholz/.local/lib/python3.10/site-packages (from pandas) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from pandas) (2023.3)
+Requirement already satisfied: tzdata&gt;=2022.1 in /home/scholz/.local/lib/python3.10/site-packages (from pandas) (2023.3)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from matplotlib) (1.2.0)
+Requirement already satisfied: cycler&gt;=0.10 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from matplotlib) (0.11.0)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from matplotlib) (4.39.3)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from matplotlib) (1.4.4)
+Requirement already satisfied: packaging&gt;=20.0 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from matplotlib) (24.2)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from matplotlib) (3.0.9)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting jaxtyping (from gpytorch)
+  Downloading jaxtyping-0.3.2-py3-none-any.whl.metadata (7.0 kB)
+Requirement already satisfied: mpmath&lt;=1.3,&gt;=0.19 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from gpytorch) (1.3.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting linear-operator&gt;=0.6 (from gpytorch)
+  Downloading linear_operator-0.6-py3-none-any.whl.metadata (15 kB)
+Requirement already satisfied: typing_extensions in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from botorch) (4.12.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pyre_extensions (from botorch)
+  Downloading pyre_extensions-0.0.32-py3-none-any.whl.metadata (4.0 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting torch&gt;=2.0.1 (from botorch)
+  Downloading torch-2.7.0-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (29 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pyro-ppl&gt;=1.8.4 (from botorch)
+  Downloading pyro_ppl-1.9.1-py3-none-any.whl.metadata (7.8 kB)
+Requirement already satisfied: multipledispatch in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from botorch) (1.0.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting opt-einsum&gt;=2.3.2 (from pyro-ppl&gt;=1.8.4-&gt;botorch)
+  Using cached opt_einsum-3.4.0-py3-none-any.whl.metadata (6.3 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pyro-api&gt;=0.1.1 (from pyro-ppl&gt;=1.8.4-&gt;botorch)
+  Downloading pyro_api-0.1.2-py3-none-any.whl.metadata (2.5 kB)
+Requirement already satisfied: tqdm&gt;=4.36 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from pyro-ppl&gt;=1.8.4-&gt;botorch) (4.65.0)
+Requirement already satisfied: six&gt;=1.5 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.16.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: filelock in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from torch&gt;=2.0.1-&gt;botorch) (3.13.1)
+Collecting sympy&gt;=1.13.3 (from torch&gt;=2.0.1-&gt;botorch)
+  Using cached sympy-1.13.3-py3-none-any.whl.metadata (12 kB)
+Requirement already satisfied: networkx in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from torch&gt;=2.0.1-&gt;botorch) (3.1)
+Requirement already satisfied: jinja2 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from torch&gt;=2.0.1-&gt;botorch) (3.1.2)
+Requirement already satisfied: fsspec in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from torch&gt;=2.0.1-&gt;botorch) (2023.12.2)
+Collecting nvidia-cuda-nvrtc-cu12==12.6.77 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_cuda_nvrtc_cu12-12.6.77-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting nvidia-cuda-runtime-cu12==12.6.77 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_cuda_runtime_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-cupti-cu12==12.6.80 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_cuda_cupti_cu12-12.6.80-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cudnn-cu12==9.5.1.17 (from torch&gt;=2.0.1-&gt;botorch)
+  Using cached nvidia_cudnn_cu12-9.5.1.17-py3-none-manylinux_2_28_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cublas-cu12==12.6.4.1 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cufft-cu12==11.3.0.4 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.5 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting nvidia-curand-cu12==10.3.7.77 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_curand_cu12-10.3.7.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cusolver-cu12==11.7.1.2 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparse-cu12==12.5.4.2 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparselt-cu12==0.6.3 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_cusparselt_cu12-0.6.3-py3-none-manylinux2014_x86_64.whl.metadata (6.8 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting nvidia-nccl-cu12==2.26.2 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_nccl_cu12-2.26.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.0 kB)
+Collecting nvidia-nvtx-cu12==12.6.77 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_nvtx_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-nvjitlink-cu12==12.6.85 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cufile-cu12==1.11.1.6 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading nvidia_cufile_cu12-1.11.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.5 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting triton==3.3.0 (from torch&gt;=2.0.1-&gt;botorch)
+  Downloading triton-3.3.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (1.5 kB)
+Requirement already satisfied: setuptools&gt;=40.8.0 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from triton==3.3.0-&gt;torch&gt;=2.0.1-&gt;botorch) (72.1.0)
+Collecting wadler-lindig&gt;=0.1.3 (from jaxtyping-&gt;gpytorch)
+  Downloading wadler_lindig-0.1.5-py3-none-any.whl.metadata (17 kB)
+Requirement already satisfied: typing-inspect in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from pyre_extensions-&gt;botorch) (0.9.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: MarkupSafe&gt;=2.0 in /home/scholz/.local/lib/python3.10/site-packages (from jinja2-&gt;torch&gt;=2.0.1-&gt;botorch) (2.1.2)
+Requirement already satisfied: mypy-extensions&gt;=0.3.0 in /home/scholz/miniconda3/envs/pytorch/lib/python3.10/site-packages (from typing-inspect-&gt;pyre_extensions-&gt;botorch) (1.0.0)
+Downloading gpytorch-1.14-py3-none-any.whl (277 kB)
+Downloading botorch-0.13.0-py3-none-any.whl (706 kB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/706.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">706.8/706.8 kB</span> <span class=" -Color -Color-Red">69.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading linear_operator-0.6-py3-none-any.whl (176 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading pyro_ppl-1.9.1-py3-none-any.whl (755 kB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/756.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">756.0/756.0 kB</span> <span class=" -Color -Color-Red">69.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading torch-2.7.0-cp310-cp310-manylinux_2_28_x86_64.whl (865.2 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/865.2 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.3/865.2 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:08</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">47.2/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:07</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">70.5/865.2 MB</span> <span class=" -Color -Color-Red">117.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:07</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">94.4/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:07</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">118.0/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:07</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">141.8/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:07</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">165.7/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:06</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">189.3/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:06</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">213.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:06</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">236.7/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:06</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">260.6/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:06</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">284.2/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:05</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">308.0/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:05</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">331.9/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:05</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">355.5/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:05</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">379.3/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:05</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">402.9/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:04</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">426.8/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:04</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">450.6/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:04</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">474.2/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:04</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">498.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:04</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">521.7/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">545.5/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━ <span class=" -Color -Color-Green">569.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━ <span class=" -Color -Color-Green">593.0/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━ <span class=" -Color -Color-Green">616.8/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━ <span class=" -Color -Color-Green">640.4/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━ <span class=" -Color -Color-Green">664.3/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━ <span class=" -Color -Color-Green">687.9/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━ <span class=" -Color -Color-Green">711.7/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━ <span class=" -Color -Color-Green">735.3/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━ <span class=" -Color -Color-Green">759.2/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━ <span class=" -Color -Color-Green">783.0/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━ <span class=" -Color -Color-Green">806.6/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━ <span class=" -Color -Color-Green">830.5/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ <span class=" -Color -Color-Green">854.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">865.1/865.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">865.2/865.2 MB</span> <span class=" -Color -Color-Red">59.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (393.1 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/393.1 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.6/393.1 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:04</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">47.2/393.1 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">70.8/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">94.4/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">118.0/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">141.8/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:03</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">165.7/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">189.3/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">213.1/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">236.7/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━ <span class=" -Color -Color-Green">260.6/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━ <span class=" -Color -Color-Green">284.2/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━ <span class=" -Color -Color-Green">307.8/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━ <span class=" -Color -Color-Green">331.4/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━ <span class=" -Color -Color-Green">354.9/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━ <span class=" -Color -Color-Green">378.5/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">393.0/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">393.0/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">393.0/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">393.0/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">393.0/393.1 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">393.1/393.1 MB</span> <span class=" -Color -Color-Red">82.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_cuda_cupti_cu12-12.6.80-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (8.9 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/8.9 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">8.9/8.9 MB</span> <span class=" -Color -Color-Red">92.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_cuda_nvrtc_cu12-12.6.77-py3-none-manylinux2014_x86_64.whl (23.7 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/23.7 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ <span class=" -Color -Color-Green">23.3/23.7 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.7/23.7 MB</span> <span class=" -Color -Color-Red">93.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_cuda_runtime_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (897 kB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/897.7 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">897.7/897.7 kB</span> <span class=" -Color -Color-Red">74.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hUsing cached nvidia_cudnn_cu12-9.5.1.17-py3-none-manylinux_2_28_x86_64.whl (571.0 MB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (200.2 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/200.2 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.6/200.2 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">47.2/200.2 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">70.8/200.2 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">94.4/200.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">118.0/200.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━ <span class=" -Color -Color-Green">141.8/200.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━ <span class=" -Color -Color-Green">165.7/200.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━ <span class=" -Color -Color-Green">189.3/200.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">200.0/200.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">200.0/200.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">200.2/200.2 MB</span> <span class=" -Color -Color-Red">96.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_cufile_cu12-1.11.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.1 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/1.1 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.1/1.1 MB</span> <span class=" -Color -Color-Red">78.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_curand_cu12-10.3.7.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (56.3 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/56.3 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.3/56.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━ <span class=" -Color -Color-Green">47.2/56.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">56.3/56.3 MB</span> <span class=" -Color -Color-Red">96.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (158.2 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/158.2 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.3/158.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">47.2/158.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">70.8/158.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">94.6/158.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━ <span class=" -Color -Color-Green">118.2/158.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━ <span class=" -Color -Color-Green">142.1/158.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">158.1/158.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">158.1/158.2 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">158.2/158.2 MB</span> <span class=" -Color -Color-Red">96.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (216.6 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/216.6 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.6/216.6 MB</span> <span class=" -Color -Color-Red">117.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">47.2/216.6 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">70.8/216.6 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">94.4/216.6 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">118.2/216.6 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━ <span class=" -Color -Color-Green">141.8/216.6 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━ <span class=" -Color -Color-Green">165.7/216.6 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━ <span class=" -Color -Color-Green">189.5/216.6 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ <span class=" -Color -Color-Green">213.1/216.6 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">216.5/216.6 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">216.6/216.6 MB</span> <span class=" -Color -Color-Red">97.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_cusparselt_cu12-0.6.3-py3-none-manylinux2014_x86_64.whl (156.8 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/156.8 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.3/156.8 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">47.2/156.8 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">70.8/156.8 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">94.4/156.8 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━ <span class=" -Color -Color-Green">118.2/156.8 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━ <span class=" -Color -Color-Green">141.8/156.8 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">156.8/156.8 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">156.8/156.8 MB</span> <span class=" -Color -Color-Red">97.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_nccl_cu12-2.26.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (201.3 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/201.3 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.3/201.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">46.9/201.3 MB</span> <span class=" -Color -Color-Red">117.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">70.8/201.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">94.4/201.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">118.2/201.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━ <span class=" -Color -Color-Green">141.8/201.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━ <span class=" -Color -Color-Green">165.7/201.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━ <span class=" -Color -Color-Green">189.3/201.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">201.1/201.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">201.1/201.3 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">201.3/201.3 MB</span> <span class=" -Color -Color-Red">97.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (19.7 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/19.7 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">19.7/19.7 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">19.7/19.7 MB</span> <span class=" -Color -Color-Red">95.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading nvidia_nvtx_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (89 kB)
+Downloading triton-3.3.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (156.4 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/156.4 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.6/156.4 MB</span> <span class=" -Color -Color-Red">117.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">47.2/156.4 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">70.8/156.4 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">94.4/156.4 MB</span> <span class=" -Color -Color-Red">117.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━ <span class=" -Color -Color-Green">118.2/156.4 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━ <span class=" -Color -Color-Green">141.8/156.4 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">156.2/156.4 MB</span> <span class=" -Color -Color-Red">117.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">156.4/156.4 MB</span> <span class=" -Color -Color-Red">97.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading jaxtyping-0.3.2-py3-none-any.whl (55 kB)
+Downloading pyre_extensions-0.0.32-py3-none-any.whl (12 kB)
+Using cached opt_einsum-3.4.0-py3-none-any.whl (71 kB)
+Downloading pyro_api-0.1.2-py3-none-any.whl (11 kB)
+Using cached sympy-1.13.3-py3-none-any.whl (6.2 MB)
+Downloading wadler_lindig-0.1.5-py3-none-any.whl (20 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
+<span class=" -Color -Color-Red">ERROR: Operation cancelled by user</span>
+
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="kn">from</span><span class="w"> </span><span class="nn">rdkit.Chem</span><span class="w"> </span><span class="kn">import</span> <span class="n">AllChem</span><span class="p">,</span> <span class="n">Descriptors</span><span class="p">,</span> <span class="n">Draw</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="ne">---&gt; </span><span class="mi">16</span> <span class="kn">import</span><span class="w"> </span><span class="nn">gpytorch</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">import</span><span class="w"> </span><span class="nn">botorch</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># Set random seed for reproducibility</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;gpytorch&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction-and-theory">
+<h1>## 1. Introduction and Theory<a class="headerlink" href="#introduction-and-theory" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id6">
+<h1><a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="brief-theoretical-background-about-the-topic-of-this-notebook">
+<h1>[Brief theoretical background about the topic of this notebook]<a class="headerlink" href="#brief-theoretical-background-about-the-topic-of-this-notebook" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id7">
+<h1><a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="you-can-include-equations-using-latex-format">
+<h1>[You can include equations using LaTeX format]<a class="headerlink" href="#you-can-include-equations-using-latex-format" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id8">
+<h1><a class="headerlink" href="#id8" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="f-x-mu-x-mathcal-k-x-x-mathcal-k-x-x-sigma-2-mathbf-i-1-y-mu-x">
+<h1>$<span class="math notranslate nohighlight">\(f(x) = \mu(x) + \mathcal{K}(x, X)[\mathcal{K}(X, X) + \sigma^2\mathbf{I}]^{-1}(y - \mu(X))\)</span>$<a class="headerlink" href="#f-x-mu-x-mathcal-k-x-x-mathcal-k-x-x-sigma-2-mathbf-i-1-y-mu-x" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
+<h1>## 2. Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id9">
+<h1><a class="headerlink" href="#id9" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="instructions-for-preparing-data-loading-datasets-etc">
+<h1>[Instructions for preparing data, loading datasets, etc.]<a class="headerlink" href="#instructions-for-preparing-data-loading-datasets-etc" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Load and Prepare Data { display-mode: &quot;form&quot; }</span>
+
+<span class="c1"># Sample code for loading data</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_molecular_data</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load a dataset of molecules with properties.</span>
+<span class="sd">    This function can be adapted to load from CSV, database, etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Sample data for demonstration</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;SMILES&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;CCO&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;CC(=O)O&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;c1ccccc1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;CC(C)C&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;CCN&#39;</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;Property&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Load data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_molecular_data</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> molecules&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="feature-engineering">
+<h1>## 3. Feature Engineering<a class="headerlink" href="#feature-engineering" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id10">
+<h1><a class="headerlink" href="#id10" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="description-of-how-molecules-are-represented-for-machine-learning">
+<h1>[Description of how molecules are represented for machine learning]<a class="headerlink" href="#description-of-how-molecules-are-represented-for-machine-learning" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate molecular fingerprints</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_fingerprints</span><span class="p">(</span><span class="n">smiles_list</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nBits</span><span class="o">=</span><span class="mi">1024</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate Morgan fingerprints for a list of SMILES strings&quot;&quot;&quot;</span>
+    <span class="n">fingerprints</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">valid_mols</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">valid_smiles</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">smiles</span> <span class="ow">in</span> <span class="n">smiles_list</span><span class="p">:</span>
+        <span class="n">mol</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">MolFromSmiles</span><span class="p">(</span><span class="n">smiles</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fp</span> <span class="o">=</span> <span class="n">AllChem</span><span class="o">.</span><span class="n">GetMorganFingerprintAsBitVect</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">nBits</span><span class="p">)</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">nBits</span><span class="p">))</span>
+            <span class="n">DataStructs</span><span class="o">.</span><span class="n">ConvertToNumpyArray</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">fingerprints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">valid_mols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+            <span class="n">valid_smiles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">smiles</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">),</span> <span class="n">valid_mols</span><span class="p">,</span> <span class="n">valid_smiles</span>
+
+<span class="c1"># Generate features</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rdkit</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataStructs</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">mols</span><span class="p">,</span> <span class="n">valid_smiles</span> <span class="o">=</span> <span class="n">calculate_fingerprints</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;SMILES&#39;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;SMILES&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">valid_smiles</span><span class="p">),</span> <span class="s1">&#39;Property&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated fingerprints with shape: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="model-implementation">
+<h1>## 4. Model Implementation<a class="headerlink" href="#model-implementation" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id11">
+<h1><a class="headerlink" href="#id11" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="description-of-the-model-implementation">
+<h1>[Description of the model implementation]<a class="headerlink" href="#description-of-the-model-implementation" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Implement Model { display-mode: &quot;form&quot; }</span>
+
+<span class="c1"># Example implementation of a Gaussian Process model with RBF kernel</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ExactGPModel</span><span class="p">(</span><span class="n">gpytorch</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ExactGP</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ExactGPModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean_module</span> <span class="o">=</span> <span class="n">gpytorch</span><span class="o">.</span><span class="n">means</span><span class="o">.</span><span class="n">ConstantMean</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">covar_module</span> <span class="o">=</span> <span class="n">gpytorch</span><span class="o">.</span><span class="n">kernels</span><span class="o">.</span><span class="n">ScaleKernel</span><span class="p">(</span><span class="n">gpytorch</span><span class="o">.</span><span class="n">kernels</span><span class="o">.</span><span class="n">RBFKernel</span><span class="p">())</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">mean_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean_module</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">covar_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">covar_module</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">gpytorch</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">MultivariateNormal</span><span class="p">(</span><span class="n">mean_x</span><span class="p">,</span> <span class="n">covar_x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optimization-implementation">
+<h1>## 5. Optimization Implementation<a class="headerlink" href="#optimization-implementation" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id12">
+<h1><a class="headerlink" href="#id12" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="description-of-the-optimization-approach">
+<h1>[Description of the optimization approach]<a class="headerlink" href="#description-of-the-optimization-approach" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Implement Optimization { display-mode: &quot;form&quot; }</span>
+
+<span class="c1"># Example implementation of a simple acquisition function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">expected_improvement</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">best_f</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Expected Improvement acquisition function&quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span>
+    
+    <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s1">&#39;warn&#39;</span><span class="p">):</span>
+        <span class="n">improvement</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">-</span> <span class="n">best_f</span> <span class="o">-</span> <span class="n">xi</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">improvement</span> <span class="o">/</span> <span class="n">std</span>
+        <span class="n">ei</span> <span class="o">=</span> <span class="n">improvement</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span> <span class="o">+</span> <span class="n">std</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+        <span class="n">ei</span><span class="p">[</span><span class="n">std</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        
+    <span class="k">return</span> <span class="n">ei</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="experiment-and-results">
+<h1>## 6. Experiment and Results<a class="headerlink" href="#experiment-and-results" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id13">
+<h1><a class="headerlink" href="#id13" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="description-of-the-experiment-and-visualization-of-results">
+<h1>[Description of the experiment and visualization of results]<a class="headerlink" href="#description-of-the-experiment-and-visualization-of-results" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Run Experiment and Visualize Results { display-mode: &quot;form&quot; }</span>
+
+<span class="c1"># Example code for visualizing molecular properties</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">y_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_smiles</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="n">valid_smiles</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Property Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Molecular Properties&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Display molecules with RDKit</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Draw</span><span class="o">.</span><span class="n">MolsToGridImage</span><span class="p">(</span><span class="n">mols</span><span class="p">,</span> <span class="n">molsPerRow</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
+                          <span class="n">subImgSize</span><span class="o">=</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> 
+                          <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">valid_smiles</span><span class="p">,</span> <span class="n">y</span><span class="p">)])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="interactive-exploration-optional">
+<h1>## 7. Interactive Exploration (Optional)<a class="headerlink" href="#interactive-exploration-optional" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id14">
+<h1><a class="headerlink" href="#id14" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="description-of-interactive-elements-for-users-to-explore">
+<h1>[Description of interactive elements for users to explore]<a class="headerlink" href="#description-of-interactive-elements-for-users-to-explore" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="title-interactive-parameter-exploration-display-mode-form">
+<h1>&#64;title Interactive Parameter Exploration { display-mode: “form” }<a class="headerlink" href="#title-interactive-parameter-exploration-display-mode-form" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="add-interactive-elements-here-if-desired">
+<h1>Add interactive elements here if desired<a class="headerlink" href="#add-interactive-elements-here-if-desired" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="for-example-widgets-to-adjust-model-parameters">
+<h1>For example, widgets to adjust model parameters<a class="headerlink" href="#for-example-widgets-to-adjust-model-parameters" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercises-for-readers">
+<h1>## 8. Exercises for Readers<a class="headerlink" href="#exercises-for-readers" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id15">
+<h1><a class="headerlink" href="#id15" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="here-are-some-exercises-to-deepen-your-understanding">
+<h1>Here are some exercises to deepen your understanding:<a class="headerlink" href="#here-are-some-exercises-to-deepen-your-understanding" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id16">
+<h1><a class="headerlink" href="#id16" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="try-different-molecular-representations-and-compare-their-performance">
+<h1>1. Try different molecular representations and compare their performance<a class="headerlink" href="#try-different-molecular-representations-and-compare-their-performance" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="implement-an-alternative-acquisition-function-and-compare-results">
+<h1>2. Implement an alternative acquisition function and compare results<a class="headerlink" href="#implement-an-alternative-acquisition-function-and-compare-results" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="apply-this-approach-to-a-different-molecular-dataset">
+<h1>3. Apply this approach to a different molecular dataset<a class="headerlink" href="#apply-this-approach-to-a-different-molecular-dataset" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="extend-the-model-to-handle-multi-objective-optimization">
+<h1>4. Extend the model to handle multi-objective optimization<a class="headerlink" href="#extend-the-model-to-handle-multi-objective-optimization" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="summary-and-key-takeaways">
+<h1>## 9. Summary and Key Takeaways<a class="headerlink" href="#summary-and-key-takeaways" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id17">
+<h1><a class="headerlink" href="#id17" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-points">
+<h1><strong>Key Points:</strong><a class="headerlink" href="#key-points" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id18">
+<h1><a class="headerlink" href="#id18" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="first-key-takeaway">
+<h1>- First key takeaway<a class="headerlink" href="#first-key-takeaway" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="second-key-takeaway">
+<h1>- Second key takeaway<a class="headerlink" href="#second-key-takeaway" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="third-key-takeaway">
+<h1>- Third key takeaway<a class="headerlink" href="#third-key-takeaway" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id19">
+<h1><a class="headerlink" href="#id19" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="next-steps">
+<h1><strong>Next Steps:</strong><a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id20">
+<h1><a class="headerlink" href="#id20" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="suggestion-for-further-exploration">
+<h1>- Suggestion for further exploration<a class="headerlink" href="#suggestion-for-further-exploration" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics-in-other-chapters">
+<h1>- Related topics in other chapters<a class="headerlink" href="#related-topics-in-other-chapters" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>## 10. References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id21">
+<h1><a class="headerlink" href="#id21" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reference-1">
+<h1>1. Reference 1<a class="headerlink" href="#reference-1" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reference-2">
+<h1>2. Reference 2<a class="headerlink" href="#reference-2" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reference-3">
+<h1>3. Reference 3<a class="headerlink" href="#reference-3" title="Link to this heading">#</a></h1>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/foundations"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">-<em>- coding: utf-8 -</em>-</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-title-section-title"># [Chapter Title]: [Section Title]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#author-hosein-fooladi"><strong>Author</strong>: Hosein Fooladi</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#license-mit-license"><strong>License</strong>: MIT License</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">## Overview</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#this-notebook-demonstrates-brief-description-of-what-the-notebook-covers">This notebook demonstrates [brief description of what the notebook covers].</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives"><strong>Learning Objectives:</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-objective">- First objective</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#second-objective">- Second objective</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#third-objective">- Third objective</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-and-theory">## 1. Introduction and Theory</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-theoretical-background-about-the-topic-of-this-notebook">[Brief theoretical background about the topic of this notebook]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#you-can-include-equations-using-latex-format">[You can include equations using LaTeX format]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#f-x-mu-x-mathcal-k-x-x-mathcal-k-x-x-sigma-2-mathbf-i-1-y-mu-x">$<span class="math notranslate nohighlight">\(f(x) = \mu(x) + \mathcal{K}(x, X)[\mathcal{K}(X, X) + \sigma^2\mathbf{I}]^{-1}(y - \mu(X))\)</span>$</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">## 2. Data Preparation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions-for-preparing-data-loading-datasets-etc">[Instructions for preparing data, loading datasets, etc.]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">## 3. Feature Engineering</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id10"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-how-molecules-are-represented-for-machine-learning">[Description of how molecules are represented for machine learning]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">## 4. Model Implementation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id11"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-model-implementation">[Description of the model implementation]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-implementation">## 5. Optimization Implementation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id12"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-optimization-approach">[Description of the optimization approach]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-and-results">## 6. Experiment and Results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id13"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-experiment-and-visualization-of-results">[Description of the experiment and visualization of results]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-exploration-optional">## 7. Interactive Exploration (Optional)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id14"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-interactive-elements-for-users-to-explore">[Description of interactive elements for users to explore]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#title-interactive-parameter-exploration-display-mode-form">@title Interactive Parameter Exploration { display-mode: “form” }</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#add-interactive-elements-here-if-desired">Add interactive elements here if desired</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#for-example-widgets-to-adjust-model-parameters">For example, widgets to adjust model parameters</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-for-readers">## 8. Exercises for Readers</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id15"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#here-are-some-exercises-to-deepen-your-understanding">Here are some exercises to deepen your understanding:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id16"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#try-different-molecular-representations-and-compare-their-performance">1. Try different molecular representations and compare their performance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-an-alternative-acquisition-function-and-compare-results">2. Implement an alternative acquisition function and compare results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-this-approach-to-a-different-molecular-dataset">3. Apply this approach to a different molecular dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extend-the-model-to-handle-multi-objective-optimization">4. Extend the model to handle multi-objective optimization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-key-takeaways">## 9. Summary and Key Takeaways</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id17"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points"><strong>Key Points:</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id18"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-key-takeaway">- First key takeaway</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#second-key-takeaway">- Second key takeaway</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#third-key-takeaway">- Third key takeaway</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id19"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps"><strong>Next Steps:</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id20"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#suggestion-for-further-exploration">- Suggestion for further exploration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics-in-other-chapters">- Related topics in other chapters</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">## 10. References</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id21"></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-1">1. Reference 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-2">2. Reference 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-3">3. Reference 3</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hosein Fooladi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
