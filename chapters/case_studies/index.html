@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; bayesoptimol</title>
+    <title>Case Studies in Molecular Optimization &#8212; bayesoptimol</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -179,9 +179,49 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../foundations/bayesian_optimization_intro.html">Introduction to Active Learning in Drug Discovery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../foundations/molecules_representation.html">Molecular Representations for Machine Learning</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../foundations/index.html">Foundations of Bayesian Optimization and Active Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../foundations/bayesian_optimization_intro.html">Introduction to Active Learning in Drug Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../foundations/molecules_representation.html">Molecular Representations for Machine Learning</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Gaussian Processes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gaussian_processes/index.html">Gaussian Processes for Molecular Property Prediction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Acquisition Functions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../acquisition_functions/index.html">Acquisition Functions for Molecular Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Active Learning Strategies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../active_learning_strategies/index.html">Active Learning Strategies for Drug Discovery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Case Studies in Molecular Optimization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Implementations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../implementations/index.html">Practical Implementations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced_topics/index.html">Advanced Topics in Bayesian Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -367,11 +407,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Case Studies in Molecular Optimization</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-overview">Chapter Overview</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -381,8 +430,29 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="case-studies-in-molecular-optimization">
+<h1>Case Studies in Molecular Optimization<a class="headerlink" href="#case-studies-in-molecular-optimization" title="Link to this heading">#</a></h1>
+<p>This section presents real-world applications of Bayesian optimization and active learning in drug discovery through detailed case studies. These examples demonstrate how the theoretical concepts from previous sections translate into practical implementations and results.</p>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>How to apply Bayesian optimization and active learning to real molecular datasets</p></li>
+<li><p>Practical considerations when optimizing different molecular properties</p></li>
+<li><p>Strategies for handling the challenges that arise in real drug discovery projects</p></li>
+</ul>
+</section>
+<section id="chapter-overview">
+<h2>Chapter Overview<a class="headerlink" href="#chapter-overview" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Solubility Optimization</strong>: Follow a complete workflow for optimizing molecular solubility, from data preparation and model selection to acquisition function implementation and results analysis.</p></li>
+<li><p><strong>Binding Affinity Prediction</strong>: Explore how to use Bayesian optimization to efficiently identify molecules with high binding affinity to a target protein, including protein-ligand interaction modeling and structure-based approaches.</p></li>
+<li><p><strong>Multi-Objective Optimization</strong>: Learn strategies for simultaneously optimizing multiple molecular properties, such as potency, selectivity, and ADMET properties, using Pareto-based approaches and scalarization techniques.</p></li>
+</ul>
+<p>By the end of this section, you’ll understand how the theoretical concepts covered in earlier chapters can be applied to solve real drug discovery challenges, and you’ll have practical templates that you can adapt to your own research projects.</p>
+</section>
+<div class="toctree-wrapper compound">
 </div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -438,6 +508,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-overview">Chapter Overview</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

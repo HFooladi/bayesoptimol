@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Practical Implementations &#8212; bayesoptimol</title>
+    <title>Reactions Representations for Machine Learning &#8212; bayesoptimol</title>
   
   
   
@@ -57,11 +57,9 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/implementations/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/foundations/reactions_representaion';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="scikit_learn_implementation.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="../case_studies/multi_objective_optimization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -181,9 +181,9 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../foundations/index.html">Foundations of Bayesian Optimization and Active Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../foundations/bayesian_optimization_intro.html">Introduction to Active Learning in Drug Discovery</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../foundations/molecules_representation.html">Molecular Representations for Machine Learning</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Foundations of Bayesian Optimization and Active Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesian_optimization_intro.html">Introduction to Active Learning in Drug Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="molecules_representation.html">Molecular Representations for Machine Learning</a></li>
 </ul>
 </details></li>
 </ul>
@@ -212,8 +212,8 @@
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Implementations</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Practical Implementations</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../implementations/index.html">Practical Implementations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
 </ul>
 </details></li>
 </ul>
@@ -293,7 +293,7 @@
       
       
       
-      <li><a href="https://github.com/HFooladi/bayesoptimol/issues/new?title=Issue%20on%20page%20%2Fchapters/implementations/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/HFooladi/bayesoptimol/issues/new?title=Issue%20on%20page%20%2Fchapters/foundations/reactions_representaion.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +323,7 @@
       
       
       
-      <li><a href="../../_sources/chapters/implementations/index.md" target="_blank"
+      <li><a href="../../_sources/chapters/foundations/reactions_representaion.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -407,7 +407,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Practical Implementations</h1>
+    <h1>Reactions Representations for Machine Learning</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,8 +417,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-overview">Chapter Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reaction-representations">Reaction Representations</a></li>
 </ul>
             </nav>
         </div>
@@ -430,28 +429,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="practical-implementations">
-<h1>Practical Implementations<a class="headerlink" href="#practical-implementations" title="Link to this heading">#</a></h1>
-<p>This section provides hands-on implementation guidance using popular Python libraries and frameworks for Bayesian optimization and active learning in molecular discovery. You’ll learn how to translate theoretical concepts into working code.</p>
-<section id="what-you-ll-learn">
-<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>How to implement Bayesian optimization workflows using different Python libraries</p></li>
-<li><p>Practical coding patterns and best practices for molecular optimization</p></li>
-<li><p>Tips and tricks for efficient implementation and debugging</p></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="reactions-representations-for-machine-learning">
+<h1>Reactions Representations for Machine Learning<a class="headerlink" href="#reactions-representations-for-machine-learning" title="Link to this heading">#</a></h1>
+<section id="reaction-representations">
+<h2>Reaction Representations<a class="headerlink" href="#reaction-representations" title="Link to this heading">#</a></h2>
 </section>
-<section id="chapter-overview">
-<h2>Chapter Overview<a class="headerlink" href="#chapter-overview" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Scikit-learn Implementation</strong>: Learn how to use scikit-learn for basic Gaussian process regression and simple Bayesian optimization loops, with a focus on accessibility and ease of implementation for beginners.</p></li>
-<li><p><strong>GPyTorch Implementation</strong>: Explore more advanced implementations using GPyTorch, a powerful library for Gaussian processes that leverages PyTorch’s capabilities for GPU acceleration and automatic differentiation.</p></li>
-<li><p><strong>BoTorch Implementation</strong>: Master BoTorch, a specialized library for Bayesian optimization that offers state-of-the-art acquisition functions, multi-objective optimization capabilities, and advanced features for molecular optimization.</p></li>
-</ul>
-<p>By the end of this section, you’ll have practical coding knowledge and reusable templates for implementing Bayesian optimization and active learning approaches in your own molecular discovery projects.</p>
-</section>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -467,7 +449,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./chapters/implementations"
+            path: "./chapters/foundations"
         },
         predefinedOutput: true
     }
@@ -484,24 +466,6 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../case_studies/multi_objective_optimization.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="scikit_learn_implementation.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -518,8 +482,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-overview">Chapter Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reaction-representations">Reaction Representations</a></li>
 </ul>
   </nav></div>
 
