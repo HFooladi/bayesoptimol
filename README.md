@@ -47,6 +47,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # Build the book
+cd docs
 jupyter-book build .
 
 # Open the HTML output
