@@ -94,12 +94,22 @@ Numerical values that describe various physical, chemical, or topological proper
 from rdkit.Chem import Descriptors
 
 # Calculate some common descriptors
-mw = Descriptors.MolWt(aspirin)
+# Molecular Weight - Mass of the molecule in g/mol
+mw = Descriptors.MolWt(aspirin) 
+
+# LogP - Octanol-water partition coefficient, measure of lipophilicity
 logp = Descriptors.MolLogP(aspirin)
+
+# TPSA - Topological Polar Surface Area, sum of surface contributions of polar atoms
 tpsa = Descriptors.TPSA(aspirin)
+
+# Number of H-bond acceptors (typically O and N atoms)
 hba = Descriptors.NumHAcceptors(aspirin)
+
+# Number of H-bond donors (typically OH and NH groups) 
 hbd = Descriptors.NumHDonors(aspirin)
 
+# Print all calculated descriptors
 print(f"Molecular Weight: {mw}")
 print(f"LogP: {logp}")
 print(f"TPSA: {tpsa}")
@@ -126,9 +136,17 @@ import networkx as nx
 
 # Convert RDKit molecule to NetworkX graph
 def mol_to_nx(mol):
+    # Initialize an empty undirected graph
     G = nx.Graph()
     
+    # Add nodes (atoms) with their properties
     for atom in mol.GetAtoms():
+        # Each atom becomes a node with properties like:
+        # - atomic number (element type)
+        # - formal charge (+1, -1, etc)
+        # - chirality (R/S configuration) 
+        # - hybridization (sp, sp2, sp3)
+        # - aromaticity (is the atom part of an aromatic ring)
         G.add_node(atom.GetIdx(),
                   atomic_num=atom.GetAtomicNum(),
                   formal_charge=atom.GetFormalCharge(),
@@ -136,7 +154,10 @@ def mol_to_nx(mol):
                   hybridization=atom.GetHybridization(),
                   is_aromatic=atom.GetIsAromatic())
     
+    # Add edges (bonds) between atoms
     for bond in mol.GetBonds():
+        # Each bond connects two atoms and has a type
+        # (single, double, triple, aromatic)
         G.add_edge(bond.GetBeginAtomIdx(),
                   bond.GetEndAtomIdx(),
                   bond_type=bond.GetBondType())
@@ -144,6 +165,8 @@ def mol_to_nx(mol):
     return G
 
 # Create a graph representation of aspirin
+# This converts the RDKit molecule into a NetworkX graph object
+# where nodes are atoms and edges are bonds
 aspirin_graph = mol_to_nx(aspirin)
 ```
 
