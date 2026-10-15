@@ -11,6 +11,10 @@ parts:
           - file: chapters/foundations/bayesian_optimization_intro
           - file: chapters/foundations/active_learning_intro
           - file: chapters/foundations/molecules_representation
+          - file: chapters/foundations/molecules_kernels
+          - file: chapters/foundations/reactions_representation
+          - file: notebooks/foundations/intro
+          - file: notebooks/foundations/molecules_representation
 
   - caption: Gaussian Processes
     chapters:

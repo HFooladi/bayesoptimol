@@ -29,7 +29,7 @@
 # Let's begin by installing and importing all necessary packages.
 
 # Install required packages
-# !pip install -q rdkit-pypi scikit-learn pandas matplotlib seaborn tqdm umap-learn
+# !pip install -q rdkit scikit-learn pandas matplotlib seaborn tqdm umap-learn
 
 # Uncomment if using Google Colab to show plots inline
 #

@@ -62,16 +62,20 @@ xdg-open _build/html/index.html  # On Linux
 
 ```
 bayesoptimol/
-├── _config.yml          # Configuration for Jupyter Book
-├── _toc.yml             # Table of contents structure
-├── intro.md             # Introduction to the book
-├── chapters/            # Book chapters
-│   ├── foundations/     # Foundational concepts
-│   ├── gaussian_processes/  # GP-related content
-│   └── ...              # Other chapters
-├── references.bib       # Bibliography
-├── requirements.txt     # Python dependencies
-└── README.md            # Project information
+├── docs/                    # Jupyter Book source
+│   ├── _config.yml          # Configuration for Jupyter Book
+│   ├── _toc.yml             # Table of contents structure
+│   ├── intro.md             # Introduction to the book
+│   ├── chapters/            # Book chapters
+│   │   ├── foundations/     # Foundational concepts
+│   │   ├── gaussian_processes/  # GP-related content
+│   │   └── ...              # Other chapters
+│   ├── notebooks/           # Executable Jupyter notebooks
+│   ├── images/              # Figures and logo
+│   └── references.bib       # Bibliography
+├── .github/workflows/       # GitHub Pages deployment
+├── requirements.txt         # Python dependencies
+└── README.md                # Project information
 ```
 
 ## Contributing
