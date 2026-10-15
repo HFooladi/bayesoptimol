@@ -48,6 +48,7 @@ from rdkit.Chem import AllChem, Descriptors, Draw, PandasTools, MACCSkeys
 from rdkit import DataStructs
 from rdkit.Chem.Fingerprints import FingerprintMols
 from rdkit.Chem.AtomPairs import Pairs, Torsions
+from rdkit.Chem import rdMolDescriptors
 import torch
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
@@ -426,13 +427,13 @@ def generate_fingerprints(mol, fp_type='morgan', radius=2, nBits=2048):
         fp = MACCSkeys.GenMACCSKeys(mol)
     elif fp_type == 'rdkit':
         # RDKit topological fingerprint
-        fp = FingerprintMols.FingerprintMol(mol)
+        fp = Chem.RDKFingerprint(mol, fpSize=nBits)
     elif fp_type == 'atom_pair':
         # Atom pair fingerprints
-        fp = Pairs.GetAtomPairFingerprint(mol)
+        fp = rdMolDescriptors.GetHashedAtomPairFingerprintAsBitVect(mol, nBits=nBits)
     elif fp_type == 'torsion':
         # Topological torsion fingerprints
-        fp = Torsions.GetTopologicalTorsionFingerprint(mol)
+        fp = rdMolDescriptors.GetHashedTopologicalTorsionFingerprintAsBitVect(mol, nBits=nBits)
     else:
         raise ValueError(f"Fingerprint type '{fp_type}' not supported")
     

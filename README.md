@@ -1,6 +1,6 @@
 # Bayesian Optimization and Active Learning in Drug Discovery
 
-[![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](https://hfooladi.github.io/bayesoptimol/)
+[![Jupyter Book](https://img.shields.io/badge/Jupyter%20Book-online-F37726?logo=jupyter&logoColor=white)](https://hfooladi.github.io/bayesoptimol/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## About the Project
